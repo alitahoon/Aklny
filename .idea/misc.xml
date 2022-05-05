@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ali Tahoon/AndroidStudioProjects/Aklny/app/src/main/res/drawable/ic_food_icon.xml" value="0.227" />
+        <entry key="..\:/Users/Ali Tahoon/AndroidStudioProjects/Aklny/app/src/main/res/drawable/ic_next.xml" value="0.227" />
+        <entry key="..\:/Users/Ali Tahoon/AndroidStudioProjects/Aklny/app/src/main/res/drawable/ic_pervious.xml" value="0.227" />
         <entry key="..\:/Users/Ali Tahoon/AndroidStudioProjects/Aklny/app/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
       </map>
     </option>

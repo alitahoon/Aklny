@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Aklny</string>
+    <string name="title_for_cardView_1">New !</string>
+    <string name="paragraph_for_cardView_1">We got you! Round the clock Round the year</string>
 </resources>
