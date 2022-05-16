@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="30dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="12dp"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/egyption_food"
+                android:id="@+id/meal_img"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/basic_txt_color"
+                    android:text="meal name"
+                    android:id="@+id/meal_name"
+                    android:gravity="center"
+                    android:layout_margin="5dp"/>
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:layout_width="wrap_content"
+                    android:id="@+id/meal_rating"
+                    android:progressTint="@color/rateColor"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:rating="3"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/meal_details"
+                android:layout_height="match_parent"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:maxLines="2"
+                android:text="Koshery is the national dish of Egypt!  It is an extremely popular dish that is made up of layers of noodles, rice, lentils, chickpeas, fried onions, red tomato sauce, and garlic sauce"
+                android:textColor="@color/details_txt_color"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

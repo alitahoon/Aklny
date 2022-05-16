@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أكلني</string>
+    <string name="title_for_cardView_1">"ما الجديد ! "</string>
+    <string name="paragraph_for_cardView_1">ستجدنا في كل ساعه وفي كل يوم من اجل خدمتك</string>
+    <string name="egyptian_food">اكلات مصريه</string>
+    <string name="algeria_food">اكلات جزائريه</string>
+    <string name="tunisia_food">اكلات تونسيه</string>
+    <string name="Moroccan_food">اكلات مغربيه</string>
+</resources>

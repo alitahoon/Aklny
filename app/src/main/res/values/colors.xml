@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="light_white">#848484</color>
+    <color name="icone_profile_color">#525E75</color>
     <color name="white">#FFFFFFFF</color>
     <color name="item_background">#63BC3C</color>
-    <color name="card_background_tints">#AD000000</color>
+    <color name="basic_txt_color">#446A46</color>
+    <color name="basic_txt_secondery">#78938A</color>
+    <color name="details_txt_color">#064635</color>
+    <color name="card1" >#FDE6E0</color>
+    <color name="card2" >#FEEDD3</color>
+    <color name="card3" >#E5FFC0</color>
+    <color name="card4" >#FDE2E9</color>
+    <color name="profile_main_color">#4AA96C</color>
+    <color name="profile_secondry_color">#9FE6A0</color>
+    <color name="profile_third_color">#8E9775</color>
+    <color name="rateColor">#FFAA00</color>
+    <color name="profile_background">#343A40</color>
+    <color name="login_first_color">#222831</color>
+    <color name="login_second_color">#393E46</color>
+    <color name="login_third_color">#03C4A1</color>
+    <color name="login_fourth_color">#87556F</color>
+    <color name="details_first_color">#4D4C7D</color>
+    <color name="details_second_color">#827397</color>
+    <color name="details_third_color">#E9D5DA</color>
+    <color name="details_button_color">#F7CCAC</color>
+    <color name="details_background_color">#F7CCAC</color>
+    <color name="basic_color">#11698E</color>
 </resources>
