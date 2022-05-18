@@ -15,10 +15,10 @@ import com.example.aklny.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link categories_fragment#newInstance} factory method to
+ * Use the {@link categories#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class categories_fragment extends Fragment {
+public class categories extends Fragment {
     onCategorieClickListener listener;
     CardView btn_egy_food,btn_tun_food,btn_mor_food,btn_alg_food;
 
@@ -31,15 +31,15 @@ public class categories_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public categories_fragment() {
+    public categories() {
         // Required empty public constructor
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof categories_fragment.onCategorieClickListener)
-            listener=(categories_fragment.onCategorieClickListener)context;
+        if (context instanceof categories.onCategorieClickListener)
+            listener=(categories.onCategorieClickListener)context;
         else
             throw  new ClassCastException("your activity doesn't implrmrnt onCategorieClickListener interface");
     }
@@ -59,8 +59,8 @@ public class categories_fragment extends Fragment {
      * @return A new instance of fragment categories_fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static categories_fragment newInstance(String param1, String param2) {
-        categories_fragment fragment = new categories_fragment();
+    public static categories newInstance(String param1, String param2) {
+        categories fragment = new categories();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

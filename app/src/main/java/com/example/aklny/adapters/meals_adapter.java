@@ -1,5 +1,6 @@
 package com.example.aklny.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.aklny.R;
+import com.example.aklny.databases.my_database;
 import com.example.aklny.interfaces.onRecycleViewClickListener;
 import com.example.aklny.objects.meals;
 
@@ -21,11 +23,13 @@ public class meals_adapter extends RecyclerView.Adapter<meals_adapter.meal> {
     ArrayList<meals> newMealsList;
     onRecycleViewClickListener listener;
     String RCV_type;
+    my_database db;
 
-    public meals_adapter(ArrayList<meals> newMealsList,String Rcv_type, onRecycleViewClickListener listener) {
+    public meals_adapter(ArrayList<meals> newMealsList, String Rcv_type , Context context,onRecycleViewClickListener listener) {
         this.newMealsList = newMealsList;
         this.listener=listener;
         this.RCV_type=Rcv_type;
+        db=new my_database(context);
     }
 
     @NonNull
@@ -78,6 +82,7 @@ public class meals_adapter extends RecyclerView.Adapter<meals_adapter.meal> {
                     @Override
                     public void onClick(View view) {
                         LAV_fav.playAnimation();
+                        db.insertNewFavMeal(db.getMealsWithid(id));
                     }
                 });
             }
@@ -85,7 +90,12 @@ public class meals_adapter extends RecyclerView.Adapter<meals_adapter.meal> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.getElementID(id);
+                    if (RCV_type=="not favourite"){
+                        listener.getElementID(id);
+                    }else{
+                        listener.getElementID(db.getFavMealsWithid(id).getId());
+                    }
+
                 }
             });
 

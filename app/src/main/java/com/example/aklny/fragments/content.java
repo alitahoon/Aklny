@@ -1,7 +1,9 @@
 package com.example.aklny.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.aklny.R;
 import com.example.aklny.adapters.meals_adapter;
+import com.example.aklny.databases.my_database;
 import com.example.aklny.interfaces.onRecycleViewClickListener;
 import com.example.aklny.objects.meals;
 
@@ -24,6 +27,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class content extends Fragment {
+    my_database db;
+    getClickedElement listener;
     RecyclerView RCV_content;
     TextView title;
     ArrayList<meals> newMealsList=new ArrayList<>();
@@ -31,12 +36,28 @@ public class content extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_kindOfData = "kindOfData";
-
     // TODO: Rename and change types of parameters
     private String mkindOfData;
 
     public content() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof getClickedElement){
+            listener=(getClickedElement) context;
+        }else{
+            throw  new ClassCastException("your activity doesn't implrmrnt getClickedElement interface");
+        }
+        db=new my_database(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener=null;
     }
 
     /**
@@ -64,21 +85,13 @@ public class content extends Fragment {
         if (mkindOfData=="egy_food"){
             //fill the list
             Toast.makeText(getActivity(), ""+mkindOfData, Toast.LENGTH_SHORT).show();
-            newMealsList.add(new meals("egy",R.drawable.egyption_food,"kosherykosherykosherykosherykosherykosherykosherykosherykosherykosherykosherykosherykosherykosherykoshery",3,1,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
+            newMealsList=db.getMealsWithid(0,9);
         }else if(mkindOfData=="tun_food"){
-            newMealsList.add(new meals("tun",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,1,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
+            newMealsList=db.getMealsWithid(10,16);
         }else if(mkindOfData == "mor_food"){
-            newMealsList.add(new meals("mor",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,1,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
+            newMealsList=db.getMealsWithid(1,9);
         }else if(mkindOfData == "alg_food"){
-            newMealsList.add(new meals("alg",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,1,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
-            newMealsList.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
+            newMealsList=db.getMealsWithid(17,23);
         }
     }
 
@@ -104,15 +117,19 @@ public class content extends Fragment {
                 break;
         }
         //create adapter
-        meals_adapter newAdapetr=new meals_adapter(newMealsList, "not favourite",new onRecycleViewClickListener() {
+        meals_adapter newAdapetr=new meals_adapter(newMealsList, "not favourite",getContext(),new onRecycleViewClickListener() {
             @Override
             public void getElementID(int elementID) {
-                Toast.makeText(getActivity(), "id = "+elementID, Toast.LENGTH_SHORT).show();
+                listener.getElementID(elementID);
+
             }
         });
         RCV_content.setHasFixedSize(true);
         RCV_content.setAdapter(newAdapetr);
         Toast.makeText(getActivity(), "done "+newAdapetr.getItemCount(), Toast.LENGTH_SHORT).show();
         return v;
+    }
+    public interface getClickedElement {
+        void getElementID(int elementID);
     }
 }

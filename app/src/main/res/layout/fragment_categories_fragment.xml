@@ -8,7 +8,7 @@
     android:layout_marginBottom="20dp"
     android:layout_marginTop="250dp"
     android:orientation="vertical"
-    tools:context=".fragments.categories_fragment">
+    tools:context=".fragments.categories">
 
     <LinearLayout
         android:layout_width="wrap_content"

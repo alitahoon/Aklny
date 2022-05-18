@@ -1,7 +1,9 @@
 package com.example.aklny.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.aklny.R;
 import com.example.aklny.adapters.meals_adapter;
+import com.example.aklny.databases.my_database;
 import com.example.aklny.interfaces.onRecycleViewClickListener;
 import com.example.aklny.objects.meals;
 
@@ -23,6 +26,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class favourite extends Fragment {
+    int i=0;
+    getElementIDfromFavourite listener;
     RecyclerView content_favourite_meals_RCV;
     ArrayList<meals> newArrayListMeals=new ArrayList<>();
     // TODO: Rename parameter arguments, choose names that match
@@ -55,6 +60,24 @@ public class favourite extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof getElementIDfromFavourite){
+            listener=(getElementIDfromFavourite) context;
+        }else{
+            throw new ClassCastException("your activity doesn't implement getElementIDfromFavourite interface");
+        }
+        my_database db=new my_database(context);
+        newArrayListMeals=db.getFavMeals();
+        i=newArrayListMeals.size();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener=null;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +86,7 @@ public class favourite extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        newArrayListMeals.add(new meals("alg",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,1,"kosherykosherykosherykoshery"));
-        newArrayListMeals.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
-        newArrayListMeals.add(new meals("koshery",R.drawable.egyption_food,"kosherykosherykosherykosherykoshery",3,2,"kosherykosherykosherykoshery"));
+//        newArrayListMeals.add(new meals("gfdg",R.drawable.food_background1,"sdfsdf",2,1,"fwefwef"));
     }
 
     @Override
@@ -74,14 +95,20 @@ public class favourite extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_favourite, container, false);
         content_favourite_meals_RCV=v.findViewById(R.id.content_favourite_meals_RCV);
-        meals_adapter newAdapter=new meals_adapter(newArrayListMeals, "favourite",new onRecycleViewClickListener() {
+        meals_adapter newAdapter=new meals_adapter(newArrayListMeals, "favourite",getContext(),new onRecycleViewClickListener() {
             @Override
             public void getElementID(int elementID) {
                 Toast.makeText(getActivity(), "id =" + elementID, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), " بكلمك م الفيفورت ي زعييم  وصلني بالمين وحياات ابوووك ", Toast.LENGTH_SHORT).show();
+                listener.getFavElementID(elementID);
             }
         });
+        Toast.makeText(getActivity(), "size = " +i, Toast.LENGTH_SHORT).show();
         content_favourite_meals_RCV.setHasFixedSize(true);
         content_favourite_meals_RCV.setAdapter(newAdapter);
         return v;
+    }
+    public  interface getElementIDfromFavourite{
+        void getFavElementID(int id);
     }
 }

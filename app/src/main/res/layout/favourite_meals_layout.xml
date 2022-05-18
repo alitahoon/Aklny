@@ -31,9 +31,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/basic_txt_color"
                     android:text="meal name"
+                    android:maxLength="15"
                     android:id="@+id/meal_name"
                     android:gravity="center"
                     android:layout_margin="5dp"/>
